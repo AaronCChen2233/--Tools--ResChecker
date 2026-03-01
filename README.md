@@ -36,21 +36,20 @@ dotnet build
 3. `separators` *(可選)* – 用於拆分 `textToCheck` 的字元，預設為 `\t,\r,\n,`。
 4. `culture` *(可選)* – 查詢的文化代碼，預設為 `zh-TW`。
 
-範例（以簡單的 console 呼叫示意）：
-
-```csharp
-// 假設已有 MCP 用戶端
-var result = await mcpClient.CallAsync<string>(
-    "ResChecker.ResourceCheckerTool.CheckResourceTextsFromFolder",
-    "hello,world",
-    "/path/to/resources",
-    "\t,\r,\n,",
-    "en-US");
-Console.WriteLine(result);
+```json
+"ResChecker": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"path/to/ResChecker/ResChecker.csproj"
+			]
+		},
 ```
 
 > 提示：若希望非透過 MCP 執行，可在 `Program.cs` 取消註解 `builder.Services.AddSingleton<ResourceCheckerTool>();` 行，以便直接註冊工具。
 
 ## 授權
 
-本專案採用 MIT 授權。詳見 [LICENSE](LICENSE)。
+本專案採用 MIT 授權。
